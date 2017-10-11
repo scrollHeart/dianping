@@ -84,5 +84,11 @@ def all():
 
     return jsonify(getList())
 
+
+@app.route("/")
+def hello():
+    return "Dear honey"
+
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True, port=80)

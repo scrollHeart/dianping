@@ -4,11 +4,13 @@ import sys
 
 import re
 
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
 import scrapy
-from dianping.items import MerchantItem
-
+import sys
+sys.path.append('../')
+from crawler.dianping.items import MerchantItem
 
 class MerchantsSpider(scrapy.Spider):
     name = "merchants"
@@ -38,6 +40,7 @@ class MerchantsSpider(scrapy.Spider):
             url = re.sub('p(\d+)', 'p' + str(page), response.url)
 
             # 发送新的url请求加入待爬队列，并调用回调函数 self.parse
-            yield scrapy.Request(url, callback=self.parse)
+            if page <10 :
+                yield scrapy.Request(url, callback=self.parse)
 
             yield item
