@@ -6,6 +6,8 @@
 # @Software: PyCharm
 
 # -*- coding: utf-8 -*-
+import os
+
 from flask import Flask, Response, jsonify
 import MySQLdb
 import MySQLdb.cursors
@@ -17,9 +19,12 @@ Swagger(app)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:1234qwer@localhost:3306/dianping'
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 # db = SQLAlchemy(app)
+DB_ADDR = os.getenv('DB_PORT_3306_TCP_ADDR', 'localhost')
+DB_PORT = int(os.getenv('DB_PORT_3306_TCP_PORT', 3306))
+DB_PASSWORD = os.getenv('DB_ENV_MYSQL_ROOT_PASSWORD', '123')
 
 def getList():
-    coon = MySQLdb.connect(host='localhost', user='root', passwd='1234qwer', db='dianping', charset='utf8',
+    coon = MySQLdb.connect(host=DB_ADDR, port=DB_PORT, user='root', passwd=DB_PASSWORD, db='dianping', charset='utf8',
                            cursorclass=MySQLdb.cursors.DictCursor)
     cursor = coon.cursor()
     cursor.execute('select * from T_merchants')

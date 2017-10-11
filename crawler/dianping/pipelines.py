@@ -6,13 +6,16 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import json
 import MySQLdb
+import os
 from items import MerchantItem
+
+DB_ADDR = os.getenv('DB_PORT_3306_TCP_ADDR', 'localhost')
+DB_PORT = int(os.getenv('DB_PORT_3306_TCP_PORT', 3306))
+DB_PASSWORD = os.getenv('DB_ENV_MYSQL_ROOT_PASSWORD', '123')
 
 class DianpingPipeline(object):
     def __init__(self):
-        # self.file = open('teacher.json', 'wb')
-        self.coon = MySQLdb.connect(host='localhost', user='root', passwd='1234qwer', db='dianping', charset='utf8')
-
+        self.coon = MySQLdb.connect(host=DB_ADDR, port = DB_PORT, user='root', passwd=DB_PASSWORD, db='dianping', charset='utf8')
 
     def process_item(self, item, spider):
         """
@@ -24,10 +27,7 @@ class DianpingPipeline(object):
         sql = "insert into T_merchants(comment, name, huanjing, fuwu ,kouwei, tag) VALUES (%s,%s,%s,%s,%s,%s)"
         cursor.execute(sql,[item['comment'], item['name'], item['huanjing'], item['fuwu'], item['kouwei'], item['tag']])
         self.coon.commit()
-        # content = json.dumps(dict(item), ensure_ascii=False) + "\n"
-        # self.file.write(content)
         return item
 
     def close_spider(self, spider):
         self.coon.close()
-        # self.file.close()

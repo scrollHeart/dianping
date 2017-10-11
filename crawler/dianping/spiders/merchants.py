@@ -8,9 +8,7 @@ import re
 reload(sys)
 sys.setdefaultencoding('utf-8')
 import scrapy
-import sys
-sys.path.append('../')
-from crawler.dianping.items import MerchantItem
+from dianping.items import MerchantItem
 
 class MerchantsSpider(scrapy.Spider):
     name = "merchants"
