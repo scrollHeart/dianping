@@ -12,12 +12,17 @@ from flask import Flask
 app = Flask(__name__)
 
 
-@app.route("/hook", methods=['POST'])
+@app.route("/hook", methods='POST')
 def hook():
     cmd = "cd /home/hua/dianping/app && git pull && docker build -t myflask . && docker rm dianping_flask -f && docker run -d --name dianping_flask -p 8000:80 --link=dianping-mysql:db myflask"
 
     result = commands.getoutput(cmd)
     return result, 'success'
+
+
+@app.route("/")
+def hello():
+    return "Dear honey"
 
 
 if __name__ == '__main__':
