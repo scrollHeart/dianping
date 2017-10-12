@@ -23,6 +23,7 @@ DB_ADDR = os.getenv('DB_PORT_3306_TCP_ADDR', 'localhost')
 DB_PORT = int(os.getenv('DB_PORT_3306_TCP_PORT', 3306))
 DB_PASSWORD = os.getenv('DB_ENV_MYSQL_ROOT_PASSWORD', '123')
 
+
 def getList():
     coon = MySQLdb.connect(host=DB_ADDR, port=DB_PORT, user='root', passwd=DB_PASSWORD, db='dianping', charset='utf8',
                            cursorclass=MySQLdb.cursors.DictCursor)
@@ -34,15 +35,15 @@ def getList():
 
 
     # parameters:
-      # - name: language
-      #   in: path
-      #   type: string
-      #   required: true
-      #   description: The language name
-      # - name: size
-      #   in: query
-      #   type: integer
-      #   description: size of awesomeness
+    # - name: language
+    #   in: path
+    #   type: string
+    #   required: true
+    #   description: The language name
+    # - name: size
+    #   in: query
+    #   type: integer
+    #   description: size of awesomeness
 
 
 @app.route('/list', methods=['GET'])
@@ -96,4 +97,5 @@ def hello():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True, port=80)
+    app.run(host='0.0.0.0', debug=True, port=80, ssl_context=(
+        '/etc/nginx/cert/mycert.pem', '/etc/nginx/cert/mycert.key'))
