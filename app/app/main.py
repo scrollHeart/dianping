@@ -49,7 +49,7 @@ def getList():
 @app.route('/list', methods=['GET'])
 def all():
     """
-    show all list
+    获取所有商户信息
     调用这个方法能够获取到所有商户信息
     ---
     tags:
