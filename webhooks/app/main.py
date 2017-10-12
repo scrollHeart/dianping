@@ -17,7 +17,7 @@ def hook():
     cmd = "cd /home/hua/dianping/app && git pull && docker build -t myflask . && docker rm dianping_flask -f && docker run -d --name dianping_flask -p 8000:80 --link=dianping-mysql:db myflask"
 
     result = commands.getoutput(cmd)
-    return result
+    return result, 'success'
 
 
 if __name__ == '__main__':
