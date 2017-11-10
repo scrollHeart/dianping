@@ -10,11 +10,12 @@ import commands
 from flask import Flask
 
 app = Flask(__name__)
-
+ip = '172.19.101.220'
 
 @app.route("/hook", methods='POST')
 def hook():
-    cmd = "cd /home/hua/dianping/app && git pull && docker build -t myflask . && docker rm dianping_flask -f && docker run -d --name dianping_flask -p 8000:80 --link=dianping-mysql:db myflask"
+    # cmd = "cd /home/hua/dianping/app && git pull && docker build -t myflask . && docker rm dianping_flask -f && docker run -d --name dianping_flask -p 8000:80 --link=dianping-mysql:db myflask"
+    cmd = 'ssh hua@{} "bash run.sh"'.format(ip)
 
     result = commands.getoutput(cmd)
     return result, 'success'
