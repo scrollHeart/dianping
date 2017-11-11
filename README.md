@@ -20,7 +20,8 @@ docker run -it --rm --name my-running-app --link my-python-app
 
 docker run -it --name dianping_scrapy --link=dianping-mysql:db my-python-app /usr/bin/mysql -h db -u root -p1234qwer
 
-
+## 原型图
+(https://modao.cc/app/LP9kj7CNqD7jgsvJX7KHLC5tIP7HSbj#screen=s8EF112C74B1508314956150)[https://modao.cc/app/LP9kj7CNqD7jgsvJX7KHLC5tIP7HSbj#screen=s8EF112C74B1508314956150]
 
 create database dianping charset=utf8;
 
