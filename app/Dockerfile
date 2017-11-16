@@ -3,7 +3,7 @@ FROM tiangolo/uwsgi-nginx-flask:python2.7
 MAINTAINER author <geekerhua@sina.com>
 
 COPY requirements.txt ./
-COPY nginx.conf /etc/nginx/conf.d/nginx2.conf
+COPY nginx.conf /etc/nginx/conf.d/nginx.conf
 COPY mycert/mycert.pem /etc/nginx/cert/
 COPY mycert/mycert.key /etc/nginx/cert/
 COPY ./app /app
