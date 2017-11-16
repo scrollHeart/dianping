@@ -98,4 +98,4 @@ def hello():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, port=80, ssl_context=(
-        '/etc/nginx/cert/mycert.pem', '/etc/nginx/cert/mycert.key'))
+        '/etc/nginx/cert/mycert.cer', '/etc/nginx/cert/mycert.key'))
