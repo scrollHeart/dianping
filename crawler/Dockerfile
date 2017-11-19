@@ -1,6 +1,6 @@
 FROM python:2
 
-MAINTAINER author <geekerhua@sina.com>
+MAINTAINER GeekerHua <geekerhua@sina.com>
 
 WORKDIR /usr/src/app
 
